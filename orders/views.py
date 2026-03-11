@@ -25,9 +25,9 @@ from django.urls import reverse
 import json
 from django.http import HttpResponse
 from django.template.loader import get_template
-from xhtml2pdf import pisa
+# from xhtml2pdf import pisa
 from .models import Order
-
+from weasyprint import HTML
 def download_invoice(request, order_code):
     order = Order.objects.select_related(
         "address", "user"
@@ -46,7 +46,8 @@ def download_invoice(request, order_code):
         f'attachment; filename="invoice_{order.order_code}.pdf"'
     )
 
-    pisa.CreatePDF(html, dest=response)
+    # pisa.CreatePDF(html, dest=response)
+    HTML(string=html).write_pdf(response)
     return response
 
 
