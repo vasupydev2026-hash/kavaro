@@ -31,9 +31,9 @@ from pathlib import Path
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://kavaro.onrender.com"]
 
 
 # Application definition
